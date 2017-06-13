@@ -1566,6 +1566,25 @@ class Amazon_S3_And_CloudFront extends AWS_Plugin_Base {
 			$prefix = '';
 		}
 
+		$prefix = $this->add_post_id_to_prefix( $prefix );
+
+		return $prefix;
+	}
+
+	/**
+	 * Add post_id to image URL
+	 *
+	 * @param string $prefix
+	 *
+	 * @return string
+	 */
+	function add_post_id_to_prefix( $prefix ) {
+		if ( isset( $_POST['post_id'] ) ) {
+			$prefix .= $_POST['post_id'];
+		} else {
+			$prefix .= 'default';
+		}
+
 		return $prefix;
 	}
 
